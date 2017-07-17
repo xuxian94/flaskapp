@@ -1,0 +1,75 @@
+ /*common*/
+
+  .pagination-bottom{
+     text-align:  center;
+ }
+
+ .row-space {
+     height: 20px;
+ }
+ /*index*/
+ 
+ .panel-user {
+     margin: 10px 50px 10px 0;
+     height: 280px;
+     box-shadow: 2px 2px 4px;
+ }
+ 
+ .panel-user:hover {
+     box-shadow: 4px 4px 8px;
+ }
+ 
+ .panel-user-check {
+     box-shadow: 4px 4px 8px;
+ }
+ 
+ .panel-user-check::after {
+     content: '';
+     position: absolute;
+     bottom: -1px;
+     right: -1px;
+     width: 64px;
+     height: 64px;
+     background-image: url(../image/check.png);
+ }
+ 
+ .user-info-university,
+ .user-info-subject,
+ .user-info-article {
+     margin: 10px 0;
+ }
+ 
+ .user-info-university span:first-child,
+ .user-info-subject span:first-child,
+ .user-info-article span:first-child {
+     font-weight: bold;
+ }
+
+
+ /*order_confirm*/
+ 
+ .order-info-label {
+     line-height: 20px;
+ }
+ 
+ .order-info-item {
+     border: 1px solid lightgray;
+     border-radius: 4px;
+     padding: 10px 0;
+ }
+ 
+ .order-info-detail div,
+ .order-info-cost div {
+     margin: 5px 0;
+ }
+ 
+ .order-info-operate {
+     margin-top: 20px;
+ }
+ /*order_list*/
+ 
+ .table.table-order-list>tbody>tr>td {
+     line-height: 34px;
+ }
+
+

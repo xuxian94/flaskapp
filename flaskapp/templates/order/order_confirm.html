@@ -1,0 +1,115 @@
+{% extends "order/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row page-header">
+            <h1>确认订单</h1>
+        </div>
+
+        <div class="row">
+            <label class="order-info-label">订单号：1</label>
+        </div>
+        <div class="row order-info-item">
+            <div class="col-md-5 col-sm-5 col-xs-5 order-info-detail">
+                <div>
+                    <span>薛建阳</span>
+                </div>
+                <div>
+                    <span>西安建筑科技大学</span>
+                </div>
+                <div>
+                    <span>土木工程</span>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-5 order-info-cost">
+                <div>
+                    <span>联系费用：</span><span>1000</span>
+                </div>
+                <div>
+                    <span>优惠券：</span><span>1000</span>
+                </div>
+                <div>
+                    <span>合计费用：</span><span>0</span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 order-info-operate">
+                <input class="btn btn-default" type="button" name="delete-order" value="移除">
+            </div>
+        </div>
+        <div class="row-space"></div>
+
+        <div class="row">
+            <label class="order-info-label">订单号：2</label>
+        </div>
+        <div class="row order-info-item">
+            <div class="col-md-5 col-sm-5 col-xs-5 order-info-detail">
+                <div>
+                    <span>陈志华</span>
+                </div>
+                <div>
+                    <span>天津大学</span>
+                </div>
+                <div>
+                    <span>土木工程</span>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-5 order-info-cost">
+                <div>
+                    <span>联系费用：</span><span>1000</span>
+                </div>
+                <div>
+                    <span>优惠券：</span><span>1000</span>
+                </div>
+                <div>
+                    <span>合计费用：</span><span>0</span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 order-info-operate">
+                <input class="btn btn-default" type="button" name="delete-order" value="移除">
+            </div>
+        </div>
+        <div class="row-space"></div>
+
+        <div class="row">
+            <label class="order-info-label">订单号：3</label>
+        </div>
+        <div class="row order-info-item">
+            <div class="col-md-5 col-sm-5 col-xs-5 order-info-detail">
+                <div>
+                    <span>张根保</span>
+                </div>
+                <div>
+                    <span>重庆大学</span>
+                </div>
+                <div>
+                    <span>机械工程</span>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-5 order-info-cost">
+                <div>
+                    <span>联系费用：</span><span>1000</span>
+                </div>
+                <div>
+                    <span>优惠券：</span><span>1000</span>
+                </div>
+                <div>
+                    <span>合计费用：</span><span>0</span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 order-info-operate">
+                <input class="btn btn-default" type="button" name="delete-order" value="移除">
+            </div>
+        </div>
+        <div class="row-space"></div>
+
+        <div class="row text-right">
+            <label for="">总计费用：0</label>
+        </div>
+        <div class="row-space"></div>
+
+        <div class="row text-right">
+            <input class="btn btn-default" id="submit-user" name="submit-user" type="submit" value="提交订单并支付">
+        </div>
+        <div class="row-space"></div>
+    </div>
+{% endblock %}

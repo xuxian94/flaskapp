@@ -1,0 +1,23 @@
+ {% extends "layout.html" %} {% block content %}
+<div class="container-register">
+    <h1>注册</h1>
+    <br/>
+    <form id="registerForm" class="form form-register" method="POST" action="" role="form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <div class="form-group">
+            {{form.username.label}} {{form.username(placeholder="请输入用户名", class_="form-control")}}
+        </div>
+        <div class="form-group">
+            {{form.email.label}} {{form.email(placeholder="请输入邮箱", class_="form-control")}}
+        </div>
+        <div class="form-group">
+            {{form.password.label}} {{form.password(placeholder="请输入密码", class_="form-control")}}
+        </div>
+        <div class="form-group">
+            {{form.confirm.label}} {{form.confirm(placeholder="请再次输入密码", class_="form-control")}}
+        </div>
+        <p><input class="btn btn-default btn-submit" type="submit" value="注册"></p>
+    </form>
+    <p><em>已注册？</em> 点击 <a href="/">这里</a> 登录</p>
+</div>
+{% endblock %}

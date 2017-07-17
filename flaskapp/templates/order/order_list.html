@@ -1,0 +1,61 @@
+
+{% extends "order/base.html" %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row page-header">
+            <h1>订单列表</h1>
+        </div>
+
+        <table class="table table-hover table-order-list">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>需求</th>
+                    <th>专家</th>
+                    <th>学校</th>
+                    <th>专业</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td>薛建阳</td>
+                    <td>西安建筑科技大学</td>
+                    <td>土木工程</td>
+                    <td>正在联系专家</td>
+                    <td>
+                        <input class="btn btn-default" type="button" name="" value="详情">
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td>陈志华</td>
+                    <td>天津大学</td>
+                    <td>土木工程</td>
+                    <td>专家已同意</td>
+                    <td>
+                        <input class="btn btn-default" type="button" name="" value="详情">
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td>张根保</td>
+                    <td>重庆大学</td>
+                    <td>机械工程</td>
+                    <td>专家已拒绝</td>
+                    <td>
+                        <input class="btn btn-default" type="button" name="" value="详情">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,234 @@
+/* =============================================================================
+   App specific CSS file.
+   ========================================================================== */
+
+
+/* universal */
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    padding-top: 60px;
+}
+
+section {
+    overflow: auto;
+}
+
+textarea {
+    resize: vertical;
+}
+
+a {
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+hr {
+    border-color: #F05F40;
+    border-width: 3px;
+    max-width: 200px;
+}
+
+hr.light {
+    border-color: white;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.bg-primary {
+    background-color: #F05F40;
+}
+
+.text-faded {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.text-primary {
+    color: #F05F40;
+}
+
+.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+/* Header */
+
+.navbar-form input[type="text"],
+.navbar-form input[type="password"] {
+    width: 180px;
+}
+
+.container-register {
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 0 30px;
+}
+
+.form-register {
+    width: 50%;
+}
+
+.form-register .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/* Footer */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-top: 5px;
+    border-top: 1px solid #eaeaea;
+    color: #777;
+    background-color: #101010;
+}
+
+footer small {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer a {
+    color: #777;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+footer p {
+    float: right;
+    margin-right: 25px;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    float: left;
+    margin-left: 10px;
+}
+
+footer .company {
+    margin-left: 25px;
+}
+
+footer .footer-nav {
+    margin-right: 25px;
+    list-style: none;
+}
+
+
+/* Home */
+
+.home-header {
+    width: 100%;
+    height: 100%;
+    background-image: url('../image/header.jpg');
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: left;
+}
+
+.home-header .home-header-inner h1 {
+    font-weight: 700;
+    margin: 0 0 0 20%;
+}
+
+.home-header .home-header-inner h3 {
+    margin-left: 25%;
+}
+
+.home-header .home-header-inner hr {
+    margin: 30px auto;
+}
+
+.home-header .home-header-inner p {
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.home-content {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+}
+
+.home-content section:first-child {
+    padding: 100px 0;
+}
+
+.home-content section:last-child {
+    padding: 100px 0 200px;
+}
+
+@media (min-width: 768px) {
+    .home-header {
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        padding: 200px 0;
+    }
+    .home-header .home-header-inner {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .home-header .home-header-inner h1 {
+        font-size: 50px;
+        line-height: 50px;
+    }
+    .home-header .home-header-inner p {
+        font-size: 18px;
+        max-width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.home-service-box {
+    max-width: 400px;
+    margin: 50px auto 0;
+}
+
+@media (min-width: 992px) {
+    .home-service-box {
+        margin: 20px auto 0;
+    }
+}
+
+.home-service-box p {
+    margin-bottom: 0;
+}
+
+
+/* About */
+
+.container-about {
+    padding: 0 30px;
+}

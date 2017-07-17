@@ -1,0 +1,156 @@
+{% extends "order/base.html" %}
+{#{% block title %}三螺旋大数据{% endblock %}#}
+{#{% block head %}#}
+{#    {{ super() }}#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">#}
+{##}
+{#    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">#}
+{#    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">#}
+{#    <link rel="stylesheet" href="../static/css/custom.css">#}
+{##}
+{#{% endblock %}#}
+{#{% block navbar %}#}
+{#    <div class="navbar navbar-inverse" role="navigation">#}
+{#        <div class="container">#}
+{#            <div class="navbar-header">#}
+{#                <a class="navbar-brand" href="./index.html">三螺旋</a>#}
+{#            </div>#}
+{#            <div class="navbar-collapse collapse">#}
+{#                <ul class="nav navbar-nav">#}
+{#                    <li><a href="{{ url_for('blank') }}">主页</a></li>#}
+{#                    <li><a href="{{ url_for('order') }}">订单列表</a></li>#}
+{#                    <li><a href="{{ url_for('about') }}">确认订单</a> </li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+{% block content %}
+<div class="container">
+     <div class="container">
+        <div class="row page-header">
+            <h1>检索企业需求</h1>
+        </div>
+        <form id="form" name="demand" action="/demand">
+        <div class="row">
+            <label class="control-label" for="requirement">请输入需求信息</label>
+        </div>
+        <div class="row">
+            <textarea class="form-control" id="requirement" name="requirement" rows="5" value=""></textarea>
+        </div>
+        <div class="row-space"></div>
+
+        <div class="row text-right">
+            <input class="btn btn-default" id="submit" name="submit" type="submit" value="搜索" href="{{ url_for('order.blank') }}">
+        </div>
+        </form>
+        <div class="row-space"></div>
+
+        <div class="row">
+            <label class="control-label" for="subject">您可能在找这些信息</label>
+        </div>
+     <form id="AddressSelect" action="./search">
+        <div class="row">
+            <input type="checkbox" name="address" value="北京"> 北京市
+            <input type="checkbox" name="address" value="上海"> 上海市
+            <input type="checkbox" name="address" value="浙江"> 浙江省
+            <input type="checkbox" name="address" value="江苏"> 江苏省
+            <input type="checkbox" name="address" value="广东"> 广东省
+            <input type="checkbox" name="address" value="安徽"> 安徽省
+        </div>
+        <div class="row-space"></div>
+
+        <div class="row text-right">
+            <input class="btn btn-default" id="submit" name="submit" type="submit" value="搜索">
+        </div>
+     </form>
+        <div class="row-space"></div>
+
+        <div class="row-space"></div>
+            <div class="row">
+                {% for i in pagination_list %}
+                    {% for f in i %}
+                        {% if f.id %}
+                        <div class="col-md-3 col-sm-3 col-xs-3 panel panel-default panel-user">
+                            <h3>{{ f.company }}</h3>
+                            <div class="user-info-university">
+                                <span><a href="{{ f.url }}">{{ f.url }}</a></span>
+                            </div>
+                            <div class="user-info-subject">
+                                <span>联系电话:{{ f.tel }}</span>
+                            </div>
+                            <div class="user-info-subject">
+                                <span>传真:{{ f.fax }}</span>
+                            </div>
+                            <div class="user-info-article">
+                                <span>地址:</span>
+                                <span>{{ f.address }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+{#                {% for f in pagination.items %}#}
+{#                    {% if f.id %}#}
+{#                    <div class="col-md-3 col-sm-3 col-xs-3 panel panel-default panel-user">#}
+{#                        <h3>{{ f.company }}</h3>#}
+{#                        <div class="user-info-university">#}
+{#                            <span><a href="{{ f.url }}">{{ f.url }}</a></span>#}
+{#                        </div>#}
+{#                        <div class="user-info-subject">#}
+{#                            <span>联系电话:{{ f.tel }}</span>#}
+{#                        </div>#}
+{#                        <div class="user-info-subject">#}
+{#                            <span>传真:{{ f.fax }}</span>#}
+{#                        </div>#}
+{#                        <div class="user-info-article">#}
+{#                            <span>地址:</span>#}
+{#                            <span>{{ f.address }}</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+            </div>
+
+        <div class="row-space"></div>
+
+        <div class="row text-right">
+            <input class="btn btn-default" id="submit-user" name="submit-user" type="submit" value="提交">
+        </div>
+        <div class="row-space"></div>
+
+     </div>
+</div>
+
+{#            <nav class="pagination-bottom" style="text-align: center">#}
+{#          <ul class="pagination">#}
+{#                <li{% if not pagination.has_prev %} class="disabled"{% endif %}>#}
+{#                    <a href="{% if pagination.has_prev %}{{ url_for('company', page=pagination.prev_num) }}{% else %}#{% endif %}">#}
+{#                        «#}
+{#                    </a>#}
+{#                </li>#}
+{#                {% for p in pagination.iter_pages() %}#}
+{#                    {% if p %}#}
+{#                        {% if p == pagination.page %}#}
+{#                        <li class="active">#}
+{#                            <a href="{{ url_for('company', page = p) }}">{{ p }}</a>#}
+{#                        </li>#}
+{#                        {% else %}#}
+{#                        <li>#}
+{#                            <a href="{{ url_for('company', page = p) }}">{{ p }}</a>#}
+{#                        </li>#}
+{#                        {% endif %}#}
+{#                    {% else %}#}
+{#                    <li class="disabled"><a href="#">…</a></li>#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{#                <li{% if not pagination.has_next %} class="disabled"{% endif %}>#}
+{#                    <a href="{% if pagination.has_next %}{{ url_for('company',page=pagination.next_num) }}{% else %}#{% endif %}">#}
+{#                    »#}
+{#                    </a>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </nav>#}
+{% endblock %}
+
