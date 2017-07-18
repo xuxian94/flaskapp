@@ -36,7 +36,7 @@
  .user-info-university,
  .user-info-subject,
  .user-info-article {
-     margin: 10px 0;
+     margin: 10px 10px;
  }
  
  .user-info-university span:first-child,

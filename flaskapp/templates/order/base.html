@@ -50,7 +50,7 @@
         <div class="row">
             <label class="control-label" for="subject">您可能在找这些学科</label>
         </div>
-         <form id="AddressSelect" action="./search">
+         <form id="AddressSelect" action="/search/1">
             <div class="row">
                 <input type="checkbox" name="address" value="北京"> 北京市
                 <input type="checkbox" name="address" value="上海"> 上海市
@@ -69,7 +69,7 @@
             <div class="row">
                 {% for f in pagination.items %}
                     {% if f.id %}
-                    <div class="col-md-3 col-sm-3 col-xs-3 panel panel-default panel-user">
+                    <div class=" panel panel-default" >
                         <h3>{{ f.company }}</h3>
                         <div class="user-info-university">
                             <span><a href="{{ f.url }}" target=_blank>{{ f.url }}</a></span>

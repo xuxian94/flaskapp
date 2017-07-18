@@ -87,15 +87,16 @@ def search_engine(content, page):
 ''' 方法：地区复选框搜索功能,
     还没有实现分页显示 
 '''
-def select_address_checkbox():
-    info_address_all=request.values.getlist("address")
+def select_address_checkbox(page):
+    info_address=request.values.getlist("address")
     naginations = []
-    for info_address in info_address_all:
-        info=Sheet_Form.query.filter(Sheet_Form.address.like('%'+info_address+'%'))
-        naginations.append(info)
-    # info = Sheet_Form.query.filter(Sheet_Form.address.like('%' + info_address_all[0] + '%' or '%' + info_address_all[1] + '%')).paginate(page, per_page=6, error_out = False)
-    return naginations
-    # return info
+
+    # for info_address in info_address_all:
+    #     info=Sheet_Form.query.filter(Sheet_Form.address.like('%'+info_address+'%'))
+    #     naginations.append(info)
+    info = Sheet_Form.query.filter(Sheet_Form.address.like('%' + info_address[0] + '%')).paginate(page, per_page=6, error_out = False)
+    # return naginations
+    return info,info_address[0]
 
 if __name__ == '__main__':
     abc = select_id(1)
