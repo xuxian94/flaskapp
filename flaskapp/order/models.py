@@ -10,6 +10,7 @@ from jieba.analyse.analyzer import ChineseAnalyzer
 
 class Sheet_Form(db.Model):
     __tablename__ = 'info_jizhuan'
+
     __searchable__ = ['company', 'address']
     __analyzer__ = ChineseAnalyzer()
 
