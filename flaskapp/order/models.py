@@ -26,24 +26,29 @@ class Sheet_Form(db.Model):
     def __repr__(self):
         return '<Sheet_Form {}'.format(self.company)
 
+
 # flask_whooshalchemyplus.whoosh_index(app, Sheet_Form)
 
-'''
-    方法：按id获取数据
-'''
 def select_id(id):
+    """
+    按id查询数据库
+    :param id: id
+    :return: 对应id的数据
+    """
+
     if id is not None:
         try:
-            info = Sheet_Form.query.filter_by(id= id).first()
+            info = Sheet_Form.query.filter_by(id=id).first()
             return info
         except IOError:
             return None
         return None
 
-'''
-    方法：获取所有数据
-'''
+
 def select_all():
+    """
+        方法：获取所有数据
+    """
     try:
         info_all = Sheet_Form.query.all()
         return info_all
@@ -51,52 +56,74 @@ def select_all():
         return None
     return None
 
-'''
-    方法：分页获取数据
-    每页显示6个数据
-'''
+
 def select_paginate(page):
+    """
+    获取第page页数据
+    :param page: 页数
+    :return: 分页后的数据
+    """
     try:
-        pagination = Sheet_Form.query.paginate(page, per_page=6, error_out = False)
+        pagination = Sheet_Form.query.paginate(page, per_page=6, error_out=False)
         return pagination
     except IOError:
         return None
     return None
 
-''' 
-    方法：按照address或company字段的查询并分页显示功能
-    可修改查询字段
-    暂时替代搜索框的搜索
-    在add页面中显示
-'''
-def select_paginate_by_add(con,page):
+
+def select_paginate_by_add(con, page):
+    """
+    按照address或company字段的查询并分页显示功能
+        可修改查询字段
+        暂时替代搜索框的搜索
+        在add页面中显示
+    :param con: 搜索关键字
+    :param page: 页数
+    :return: 分页后的查询结果
+    """
+
     try:
-        pagination = Sheet_Form.query.filter(or_(Sheet_Form.address.like('%'+con+'%') , Sheet_Form.company.like('%'+con+'%'))).paginate(page,per_page=6,error_out=False)
+        pagination = Sheet_Form.query.filter(
+            or_(Sheet_Form.address.like('%' + con + '%'), Sheet_Form.company.like('%' + con + '%'))).paginate(page,
+                                                                                                              per_page=6,
+                                                                                                              error_out=False)
         return pagination
     except IOError:
         return None
     return None
 
-''' 方法：综合搜索引擎
-    尚未完成
-'''
+
 def search_engine(content, page):
-    pagination = Sheet_Form.query.whoosh_search(content).paginate(page, per_page=6, error_out = False)
+    """
+    综合搜索引擎
+        尚未完成
+    :param content: 搜索关键字
+    :param page: 页数
+    :return: 分页后的查询结果
+    """
+    pagination = Sheet_Form.query.whoosh_search(content).paginate(page, per_page=6, error_out=False)
     return pagination
 
-''' 方法：地区复选框搜索功能,
-    还没有实现分页显示 
-'''
+
 def select_address_checkbox(page):
-    info_address=request.values.getlist("address")
+    """
+    地区复选框搜索功能
+    :param page: 页数
+    :return: 分页后的查询结果
+    """
+
+
+    info_address = request.values.getlist("address")
     naginations = []
 
     # for info_address in info_address_all:
     #     info=Sheet_Form.query.filter(Sheet_Form.address.like('%'+info_address+'%'))
     #     naginations.append(info)
-    info = Sheet_Form.query.filter(Sheet_Form.address.like('%' + info_address[0] + '%')).paginate(page, per_page=6, error_out = False)
+    info = Sheet_Form.query.filter(Sheet_Form.address.like('%' + info_address[0] + '%')).paginate(page, per_page=6,
+                                                                                                  error_out=False)
     # return naginations
-    return info,info_address[0]
+    return info, info_address[0]
+
 
 if __name__ == '__main__':
     abc = select_id(1)
