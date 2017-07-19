@@ -112,7 +112,7 @@ def select_address_checkbox(page):
     :param page: 
     :return: 
     """
-    info_address=request.values("address")
+    info_address=request.values.getlist("address")
     # naginations = []
 
     # for info_address in info_address_all:
