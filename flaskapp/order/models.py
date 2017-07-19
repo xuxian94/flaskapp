@@ -10,7 +10,6 @@ from jieba.analyse.analyzer import ChineseAnalyzer
 
 class Sheet_Form(db.Model):
     __tablename__ = 'info_jizhuan'
-
     __searchable__ = ['company', 'address']
     __analyzer__ = ChineseAnalyzer()
 
@@ -108,12 +107,14 @@ def search_engine(content, page):
 
 def select_address_checkbox(page):
     """
-    
-    :param page: 
-    :return: 
+    地区复选框搜索功能
+    :param page: 页数
+    :return: 分页后的查询结果
     """
-    info_address=request.values.getlist("address")
-    # naginations = []
+
+
+    info_address = request.values.getlist("address")
+    naginations = []
 
     # for info_address in info_address_all:
     #     info=Sheet_Form.query.filter(Sheet_Form.address.like('%'+info_address+'%'))
