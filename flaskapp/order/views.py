@@ -23,10 +23,10 @@ def search(page):
         路由：all.html
         地区复选框功能
     """
-    if not page :
-        page =1
-    info_address_list,info_address = select_address_checkbox(page)
-    return render_template('order/search.html', title='三螺旋', pagination=info_address_list,con = info_address)
+    if not page:
+        page = 1
+    info_address_list, info_address = select_address_checkbox(page)
+    return render_template('order/search.html', title='三螺旋', pagination=info_address_list, con=info_address)
 
 
 @blueprint.route('/<int:page>')
@@ -60,9 +60,12 @@ def order():
 @blueprint.route('/<string:con>/<int:page>')
 def add(con, page):
     """
-        路由：add.html
+    路由：add.html
         按地址或公司名查询
         返回结果在add.html中显示
+    :param con: 搜索关键字
+    :param page: 页码
+    :return: 搜索结果页面
     """
     # pagination = search_engine(area, page)
     pagination = select_paginate_by_add(con, page)
@@ -78,3 +81,13 @@ def demand():
     """
     content = request.args.get('requirement')
     return add(content, 1)
+
+
+@blueprint.route('/profile/<string:name>')
+def profile(name):
+    """
+    个人简介页面
+    :param name: 姓名
+    :return: 个人简介页面
+    """
+    return render_template('order/pro.html',title="个人简介",pagination = None)
