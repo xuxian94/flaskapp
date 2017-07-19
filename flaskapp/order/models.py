@@ -89,8 +89,13 @@ def search_engine(content, page):
     还没有实现分页显示 
 '''
 def select_address_checkbox(page):
-    info_address=request.values.getlist("address")
-    naginations = []
+    """
+    
+    :param page: 
+    :return: 
+    """
+    info_address=request.values("address")
+    # naginations = []
 
     # for info_address in info_address_all:
     #     info=Sheet_Form.query.filter(Sheet_Form.address.like('%'+info_address+'%'))

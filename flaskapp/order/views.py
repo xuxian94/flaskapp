@@ -17,18 +17,6 @@ def blank():
     return render_template('order/index.html', title='三螺旋', pagination=pagination)
 
 
-@blueprint.route('/all/')
-def all():
-    """
-        路由：all.html
-        所有数据显示
-    """
-    info = select_all()
-    info_list = []
-    info_list.append(info)
-    return render_template('order/all.html', title='三螺旋', pagination_list=info_list)
-
-
 @blueprint.route('/search/<int:page>')
 def search(page):
     """
