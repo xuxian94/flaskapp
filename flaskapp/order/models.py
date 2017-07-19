@@ -112,7 +112,6 @@ def select_address_checkbox(page):
     :return: 分页后的查询结果
     """
 
-
     info_address = request.values.getlist("address")
     naginations = []
 
