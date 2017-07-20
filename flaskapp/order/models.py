@@ -3,8 +3,6 @@
 from flask import request
 from flaskapp.extensions import db
 from sqlalchemy import or_
-from flask_bootstrap import Bootstrap
-import flask_whooshalchemyplus
 from jieba.analyse.analyzer import ChineseAnalyzer
 
 
@@ -112,7 +110,6 @@ def select_address_checkbox(page):
     :return: 分页后的查询结果
     """
 
-
     info_address = request.values.getlist("address")
     naginations = []
 
@@ -125,7 +122,54 @@ def select_address_checkbox(page):
     return info, info_address[0]
 
 
+class Basic_Info_Form(db.Model):
+    """
+    人物基本信息表
+    """
+    __tablename__ = 'basic_info'
+
+    ID = db.Column(db.INTEGER, primary_key=True)
+    Name = db.Column(db.TEXT)
+    Sex = db.Column(db.TEXT)
+    Company = db.Column(db.TEXT)
+    Duty = db.Column(db.TEXT)
+    Tel = db.Column(db.TEXT)
+    Email = db.Column(db.TEXT)
+    web = db.Column(db.TEXT)
+
+    def __repr__(self):
+        return '<Basic_Info_Form {}'.format(self.Name)
+
+    def select_paginate(self, page):
+        """
+        获取第page页数据
+        :param page: 页数
+        :return: 分页后的数据
+        """
+        try:
+            pagination = Basic_Info_Form.query.paginate(page, per_page=6, error_out=False)
+            return pagination
+        except IOError:
+            return None
+        return None
+
+    def select_address_radio(self, page):
+        """
+        地区复选框搜索功能
+        :param page: 页数
+        :return: 分页后的查询结果
+        """
+
+        info_address = request.values.getlist("address")
+        info = Basic_Info_Form.query.filter(Basic_Info_Form.Company.like('%' + info_address[0] + '%')).paginate(page,
+                                                                                                           per_page=6,
+                                                                                                           error_out=False)
+        # return naginations
+        return info, info_address[0]
+
+
 if __name__ == '__main__':
-    abc = select_id(1)
+    Basic_Info_Form = Basic_Info_Form()
+    abc = Basic_Info_Form.select_paginate(1)
     print abc.company
     print select_id(2).company

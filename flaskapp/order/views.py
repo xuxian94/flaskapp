@@ -4,7 +4,7 @@ from flask import render_template, request, Blueprint
 from models import *
 
 blueprint = Blueprint('order', __name__, static_folder='../static/order')
-
+Basic_Info_Form = Basic_Info_Form()
 
 @blueprint.route('/index')
 def blank():
@@ -13,7 +13,7 @@ def blank():
         初始主页，即分页第一页
         分页显示了所有数据
     """
-    pagination = select_paginate(1)
+    pagination = Basic_Info_Form.select_paginate(page=1)
     return render_template('order/index.html', title='三螺旋', pagination=pagination)
 
 
@@ -23,10 +23,11 @@ def search(page):
         路由：all.html
         地区复选框功能
     """
-    if not page :
-        page =1
-    info_address_list,info_address = select_address_checkbox(page)
-    return render_template('order/search.html', title='三螺旋', pagination=info_address_list,con = info_address)
+    if not page:
+        page = 1
+    info_address_list, info_address = Basic_Info_Form.select_address_radio(page=page)
+    print info_address_list
+    return render_template('order/search.html', title='三螺旋', pagination=info_address_list, con=info_address)
 
 
 @blueprint.route('/<int:page>')
@@ -35,7 +36,7 @@ def company(page):
         路由：index.html
         按page定位到第几页进行显示
     """
-    pagination = select_paginate(page)
+    pagination = Basic_Info_Form.select_paginate(page=page)
     return render_template('order/index.html', title='三螺旋', pagination=pagination)
 
 
@@ -78,3 +79,18 @@ def demand():
     """
     content = request.args.get('requirement')
     return add(content, 1)
+
+
+@blueprint.route('/profile/<string:name>')
+def profile(name):
+    return render_template('order/profile.html', title="三螺旋", info=None)
+
+
+@blueprint.route('/pro/<int:id>')
+def pro(id):
+    """
+    测试用
+    :param id:
+    :return:
+    """
+    return render_template('order/pro.html', title="三螺旋")
