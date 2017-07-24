@@ -16,12 +16,30 @@ def blank():
     pagination = select_paginate(1)
     return render_template('order/index.html', title='三螺旋', pagination=pagination)
 
+@blueprint.route('/searchbox')
+def searchbox():
+    """
+    用户自定义搜索，主要是根据专家（导师）和学校搜索
+    :return: 专家陈列页面，指定学校陈列页
+    """
+    info_text = select_box()
+    return render_template('order/search.html', title='三螺旋', pagination=info_text, con=info_text)
+
+@blueprint.route('/insti_search')
+def insti_search():
+    """
+    对机构信息的查看
+    :return: 
+    """
+    info_text = select_institution()
+    return render_template('institution/insti_infoshow.html', title='三螺旋', info_insti=info_text, pagination=None)
+
 
 @blueprint.route('/search/<int:page>')
 def search(page):
     """
-        路由：all.html
-        地区复选框功能
+    :param page: 结果从第几页展示
+    :return: 根据条件进行模糊匹配的结果陈列
     """
     if not page :
         page =1
