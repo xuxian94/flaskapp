@@ -1,19 +1,28 @@
 #!/usr/bin/python
 # -*- coding:utf8 -*-
 from flask import render_template, request, Blueprint
+from flask_login import LoginManager
+from flask_login import login_required
+
 from models import *
 
 blueprint = Blueprint('order', __name__, static_folder='../static/order')
+Basic_Info_Form = Basic_Info_Form()
+Avator = Avator()
 
+
+# login_manager = LoginManager()
+# login_manager.login_view = 'login'  # 未登录用户重定向到login
 
 @blueprint.route('/index')
+@login_required
 def blank():
     """
         路由：index.html
         初始主页，即分页第一页
         分页显示了所有数据
     """
-    pagination = select_paginate(1)
+    pagination = Basic_Info_Form.select_info().paginate(page=1, per_page=6, error_out=False)
     return render_template('order/index.html', title='三螺旋', pagination=pagination)
 
 @blueprint.route('/searchbox')
@@ -36,28 +45,32 @@ def insti_search():
 
 
 @blueprint.route('/search/<int:page>')
+@login_required
 def search(page):
     """
     :param page: 结果从第几页展示
     :return: 根据条件进行模糊匹配的结果陈列
     """
-    if not page :
-        page =1
-    info_address_list,info_address = select_address_checkbox(page)
-    return render_template('order/search.html', title='三螺旋', pagination=info_address_list,con = info_address)
+    if not page:
+        page = 1
+    info_address_list, info_address = Basic_Info_Form.select_address_radio(page=page)
+    print info_address_list
+    return render_template('order/search.html', title='三螺旋', pagination=info_address_list, con=info_address)
 
 
 @blueprint.route('/<int:page>')
+@login_required
 def company(page):
     """
         路由：index.html
         按page定位到第几页进行显示
     """
-    pagination = select_paginate(page)
+    pagination = Basic_Info_Form.select_info().paginate(page=page, per_page=6, error_out=False)
     return render_template('order/index.html', title='三螺旋', pagination=pagination)
 
 
 @blueprint.route('/order_confirm')
+@login_required
 def about():
     """
         路由：order_confirm.html
@@ -67,6 +80,7 @@ def about():
 
 
 @blueprint.route('/order_list')
+@login_required
 def order():
     """
         路由：order_list.html
@@ -76,6 +90,7 @@ def order():
 
 
 @blueprint.route('/<string:con>/<int:page>')
+@login_required
 def add(con, page):
     """
         路由：add.html
@@ -88,6 +103,7 @@ def add(con, page):
 
 
 @blueprint.route('/demand')
+@login_required
 def demand():
     """
         路由：
@@ -96,3 +112,11 @@ def demand():
     """
     content = request.args.get('requirement')
     return add(content, 1)
+
+
+@blueprint.route('/profile/<int:id>')
+@login_required
+def profile(id):
+    info = Basic_Info_Form.get_info(id=id)
+    return render_template('order/profile.html', title="三螺旋", info=info)
+
