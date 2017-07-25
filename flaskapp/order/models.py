@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # -*- coding:utf8 -*-
+import os
+
 from flask import request
 from flaskapp.extensions import db
 from sqlalchemy import or_
@@ -140,15 +142,15 @@ class Basic_Info_Form(db.Model):
     def __repr__(self):
         return '<Basic_Info_Form {}'.format(self.Name)
 
-    def select_paginate(self, page):
+    def select_info(self):
         """
         获取第page页数据
         :param page: 页数
         :return: 分页后的数据
         """
         try:
-            pagination = Basic_Info_Form.query.paginate(page, per_page=6, error_out=False)
-            return pagination
+            info = Basic_Info_Form.query
+            return info
         except IOError:
             return None
         return None
@@ -162,14 +164,67 @@ class Basic_Info_Form(db.Model):
 
         info_address = request.values.getlist("address")
         info = Basic_Info_Form.query.filter(Basic_Info_Form.Company.like('%' + info_address[0] + '%')).paginate(page,
-                                                                                                           per_page=6,
-                                                                                                           error_out=False)
+                                                                                                                per_page=6,
+                                                                                                                error_out=False)
         # return naginations
         return info, info_address[0]
 
+    def get_info(self, id):
+        """
+        根据id搜索数据库
+        :param id: id
+        :return: 专家基本信息
+        """
+        info = Basic_Info_Form.query.filter_by(ID=id).first()
+        return info
 
-if __name__ == '__main__':
-    Basic_Info_Form = Basic_Info_Form()
-    abc = Basic_Info_Form.select_paginate(1)
-    print abc.company
-    print select_id(2).company
+
+class Avator(db.Model):
+    __tablename__ = 'avator'
+
+    ID = db.Column(db.INTEGER, primary_key=True)
+    img = db.Column(db.BLOB)
+
+    def __repr__(self):
+        return '<Avator {}'.format(self.id)
+
+    # 根据id获取头像信息
+    def get_avator(self, id, path='/Users/xuxian/doing/flaskapp/flaskapp/static/order/avator/'):
+        """
+        根据id来获取对应专家的头像
+        当数据据和缓存都没有时候，默认给一个空白头像
+        :param id:  专家的id
+        :param path: 存放头像缓存的路径,默认路径为'path/interface/avator'
+        :return: 返回头像的路径
+        """
+
+        # 为头像缓存添加路径
+        if not os.path.exists(path):
+            os.mkdir(path)
+
+        # 调用时返回的是调用函数的路径
+        # root = os.getcwd()
+        # print 'root', root
+        # 头像缓存在get_avator中，如果存在就无需从数据库中获取了（以id.jpg的方式缓存）
+        img_name = str(id) + '.jpg'
+        avator_path = os.path.join(path, img_name)
+        # print 'avator_path', avator_path
+
+        if os.path.exists(avator_path):
+            print avator_path
+            print img_name + ' is existed'
+            return img_name
+        # 缓存中没有，从数据库中获取
+        else:
+
+            try:
+                img = Avator.query.filter_by(ID=id).first().img
+                avator = open(avator_path, 'wb')
+                avator.write(img)
+                avator.close()
+                print 'get avator: ', img_name
+                return img_name
+
+            except:
+                print 'cant find avator, plz give a blank one'
+                return 'blank.jpg'
