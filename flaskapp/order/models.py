@@ -26,12 +26,26 @@ class Sheet_Form(db.Model):
     def __repr__(self):
         return '<Sheet_Form {}'.format(self.company)
 
+class Institution_Form(db.Model):
+    __tablename__ = 'info_institution'
+    #__searchable__ = ['company', 'address']
+    __analyzer__ = ChineseAnalyzer()
+
+    id = db.Column(db.INTEGER, primary_key=True)
+    institution_name = db.Column(db.TEXT)
+    institution_introduction = db.Column(db.TEXT)
+    institution_history = db.Column(db.TEXT)
+    institution_research_area = db.Column(db.TEXT)
+
+    def __repr__(self):
+        return '<Institution_Form {}'.format(self.institution_introduction, self.institution_history, self.institution_research_area)
+
 
 # flask_whooshalchemyplus.whoosh_index(app, Sheet_Form)
 
 def select_id(id):
     """
-    按id查询数据库
+    按id查询数据库表info_jizhuan
     :param id: id
     :return: 对应id的数据
     """
@@ -105,6 +119,16 @@ def search_engine(content, page):
     return pagination
 
 
+def select_box():
+    """
+    根据用户自定义搜索内容进行查找
+    :return: 按照搜索内容的关键词进行搜索的相关专家或者学校（机构）陈列页面
+    """
+    info_text = request.values.get("condition")
+    print info_text
+    info = Sheet_Form.query.filter(Sheet_Form.company.like('%' +info_text +'%')).paginate(per_page=6, error_out=False)
+    return info
+
 def select_address_checkbox(page):
     """
     地区复选框搜索功能
@@ -113,16 +137,18 @@ def select_address_checkbox(page):
     """
 
     info_address = request.values.getlist("address")
-    naginations = []
-
-    # for info_address in info_address_all:
-    #     info=Sheet_Form.query.filter(Sheet_Form.address.like('%'+info_address+'%'))
-    #     naginations.append(info)
-    info = Sheet_Form.query.filter(Sheet_Form.address.like('%' + info_address[0] + '%')).paginate(page, per_page=6,
-                                                                                                  error_out=False)
-    # return naginations
+    info = Sheet_Form.query.filter(Sheet_Form.address.like('%' + info_address[0] + '%')).paginate(page, per_page=6, error_out=False)
     return info, info_address[0]
 
+def select_institution():
+    """
+    对机构信息的展示
+    :return: 当前查看机构的简介，历史，主研方向
+    """
+
+    # current_institution = request.values.get('institution')
+    info_insti = Institution_Form.query.filter().first()   #paginate(per_page=6, error_out=False)
+    return info_insti
 
 class Basic_Info_Form(db.Model):
     """
