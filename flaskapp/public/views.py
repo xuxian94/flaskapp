@@ -10,6 +10,7 @@ from flaskapp.user.models import User
 from flaskapp.utils import flash_errors
 
 blueprint = Blueprint('public', __name__, static_folder='../static')
+login_manager.login_view = "public.home"
 
 
 @login_manager.user_loader
@@ -25,6 +26,7 @@ def home():
     # Handle logging in
     if request.method == 'POST':
         if form.validate_on_submit():
+
             login_user(form.user)
             flash('You are logged in.', 'success')
             redirect_url = request.args.get('next') or url_for('user.members')

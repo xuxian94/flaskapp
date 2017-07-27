@@ -12,7 +12,7 @@ Avator = Avator()
 
 
 # login_manager = LoginManager()
-# login_manager.login_view = 'login'  # 未登录用户重定向到login
+# login_manager.login_view = 'index'  # 未登录用户重定向到login
 
 @blueprint.route('/index')
 @login_required
@@ -25,6 +25,7 @@ def blank():
     pagination = Basic_Info_Form.select_info().paginate(page=1, per_page=6, error_out=False)
     return render_template('order/index.html', title='三螺旋', pagination=pagination)
 
+
 @blueprint.route('/searchbox')
 def searchbox():
     """
@@ -33,6 +34,7 @@ def searchbox():
     """
     info_text = select_box()
     return render_template('order/search.html', title='三螺旋', pagination=info_text, con=info_text)
+
 
 @blueprint.route('/insti_search')
 def insti_search():
@@ -55,7 +57,7 @@ def search(page):
         page = 1
     info_address_list, info_address = Basic_Info_Form.select_address_radio(page=page)
     print info_address_list
-    return render_template('order/search.html', title='三螺旋', pagination=info_address_list, con=info_address)
+    return render_template('order/search.html', title='三螺旋', pagination=info_address_list, address=info_address)
 
 
 @blueprint.route('/<int:page>')
@@ -119,4 +121,3 @@ def demand():
 def profile(id):
     info = Basic_Info_Form.get_info(id=id)
     return render_template('order/profile.html', title="三螺旋", info=info)
-
