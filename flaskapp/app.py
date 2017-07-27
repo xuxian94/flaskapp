@@ -7,6 +7,7 @@ from flaskapp.assets import assets
 from flaskapp.extensions import bcrypt, cache, csrf_protect, db, debug_toolbar, login_manager, migrate
 from flaskapp.settings import ProdConfig
 from flask_bootstrap import Bootstrap
+from flask_wtf.csrf import CsrfProtect
 
 
 def create_app(config_object=ProdConfig):
@@ -32,6 +33,7 @@ def register_extensions(app):
     cache.init_app(app)
     db.init_app(app)
     csrf_protect.init_app(app)
+    # CsrfProtect().init_app(app)
     login_manager.init_app(app)
     debug_toolbar.init_app(app)
     migrate.init_app(app, db)
