@@ -1,0 +1,65 @@
+{% extends "order/base.html" %}
+{% block content %}
+{#    {{ super() }}#}
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <a class="navbar-link" href="/lab_index/1"><i class="fa fa-sign-out">返回</i></a>
+                <h1>
+                    {{ info.lab_name  }}
+                </h1>
+                <hr><hr>
+                <div class="tabbable" id="tabs-65603">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#panel-664667" data-toggle="tab">实验室简介</a>
+                        </li>
+                         <li >
+                            <a href="#panel-631274" data-toggle="tab">实验室基本情况</a>
+                        </li>
+{#                         <li class="active">#}
+{#                            <a href="#panel-631275" data-toggle="tab">实验室研究方向</a>#}
+{#                        </li>#}
+                    </ul>
+                    <br><br>
+                    <div class="tab-content">
+                        <div class="tab-pane  active" id="panel-664667">
+                            <br>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgray; font-size: 20px">{{ info.lab_introduction }}</p>
+                        </div>
+                         <div class="tab-pane " id="panel-631274">
+                             <br>
+                             <br>
+                             <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室名称:</label>   {{ info.lab_name }}</p>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室所属院校:</label>   {{ info.lab_school }}</p>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室所在地:</label>   {{ info.lab_location }}</p>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室邮编:</label>   {{ info.lab_postcode }}</p>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室依托单位:</label>   {{ info.lab_supportunit }}</p>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室联系电话:</label>   {{ info.lab_tel }}</p>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室传真:</label>   {{ info.lab_fax }}</p>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室邮箱:</label>   {{ info.lab_mail }}</p>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室网址: </label>   {{ info.lab_url }}</p>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室主任:</label>   {{ info.lab_director }}</p>
+                            <br>
+                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室联系人:</label>   {{ info.lab_contactor }}</p>
+                            <br>
+                        </div>
+{#                         <div class="tab-pane active" id="panel-631275">#}
+{#                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px">{{ info.institution_research_area }}</p>#}
+{#                        </div>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

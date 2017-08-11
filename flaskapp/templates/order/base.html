@@ -34,20 +34,24 @@
 		<div class="col-md-12 column">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">专家</a>
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                         <span class="sr-only">Toggle navigation</span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/index">专家</a>
+				</div>
+
+                <div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                         <span class="sr-only">Toggle navigation</span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/lab_index/1">实验室</a>
 				</div>
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active">
-                            <form id="InstitutionSelect" action="/insti_search">
-                                <input class="btn btn-default" id="submit" name="institution" type="submit" value="机构">
-                            </form>
-						</li>
-						<li>
-							 <a href="#">专业</a>
-						</li>
-					</ul>
 					<form class="navbar-form navbar-left" role="search" action="/searchbox">
 						<div class="form-group">
 							<input type="text" class="form-control" name="condition" placeholder="请输入专业术语">
@@ -66,25 +70,6 @@
              <table class="table">
 {#             <div class="row">#}
              <tbody>
-             <tr class="success">
-                 <td>
-            <label class="contol-label">业务 ：</label>
-                 </td>
-                 <td>
-            <input type="radio" name="buisiness" value="软件服务"> 软件服务
-                 </td>
-                 <td>
-            <input type="radio" name="buisiness" value="软件推广"> 软件推广
-                 </td>
-                 <td>
-            <input type="radio" name="buisiness" value="软件推广"> 软件推广
-                 </td>
-                 <td>
-            <input type="radio" name="buisiness" value="软件研发"> 软件研发
-                 </td>
-{#             </div>#}
-                 </tr>
-{#            <div class="row">#}
              <tr class="success">
                  <td>
             <label class="contol-label">位置 ：</label>
@@ -115,7 +100,7 @@
             <input type="radio" name="domain" value="软件开发"> 软件开发
                  </td>
                  <td>
-            <input type="radio" name="domian" value="项目工程"> 项目工程
+            <input type="radio" name="domain" value="项目工程"> 项目工程
                  </td>
                  <td>
             <input type="radio" name="domain" value="科研探究"> 科研探究
@@ -139,8 +124,6 @@
             {% if f.ID %}
             <!--<div class="col-sm-2">111111</div>-->
             <div class="col-sm-12 panel panel-default">
-
-
                 <div class="col-sm-2" style="text-align:center;width: 160px;height: 150px;margin-top: 10px"><img src="../../static/order/avator/{{ f.ID }}.jpg" width="100%" height="100%"></div>
                 <div class="col-sm-10">
                     <h3><a href="{{ url_for('order.profile',id=f.ID) }}" target="_blank">{{ f.Name }}</a></h3>
@@ -157,8 +140,6 @@
                     <div class="user-info-subject">
                         <span>联系电话:{{ f.Tel }}</span>
                     </div>
-
-
                 </div>
 
             </div>

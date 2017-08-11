@@ -34,14 +34,17 @@ def searchbox():
     info_text = select_box()
     return render_template('order/search.html', title='三螺旋', pagination=info_text, con=info_text)
 
-@blueprint.route('/insti_search')
-def insti_search():
+@blueprint.route('/lab_index/<int:page>')
+def lab_index(page):
     """
     对机构信息的查看
     :return: 
     """
-    info_text = select_institution()
-    return render_template('institution/insti_infoshow.html', title='三螺旋', info_insti=info_text, pagination=None)
+    if not page:
+        page = 1
+    lab_info = Lab_Form()
+    pagination = lab_info.select_info().paginate(page=page, per_page=6, error_out=False)
+    return render_template('laboratory/lab_index.html', title='三螺旋', pagination=pagination)
 
 
 @blueprint.route('/search/<int:page>')
@@ -119,4 +122,10 @@ def demand():
 def profile(id):
     info = Basic_Info_Form.get_info(id=id)
     return render_template('order/profile.html', title="三螺旋", info=info)
+
+@blueprint.route('/lab_infoshow/<string:name>')
+def lab_infoshow(name):
+    labform = Lab_Form()
+    info = labform.get_info(name=name)
+    return render_template('laboratory/lab_infoshow.html', title="三螺旋", info=info)
 
