@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf8 -*-
-from flask import render_template, request, Blueprint
-from flask_login import LoginManager
+from flask import render_template, Blueprint
 from flask_login import login_required
 
 from models import *
@@ -10,9 +9,6 @@ blueprint = Blueprint('order', __name__, static_folder='../static/order')
 Basic_Info_Form = Basic_Info_Form()
 Avator = Avator()
 
-
-# login_manager = LoginManager()
-# login_manager.login_view = 'index'  # 未登录用户重定向到login
 
 @blueprint.route('/index')
 @login_required
@@ -27,6 +23,7 @@ def blank():
 
 
 @blueprint.route('/searchbox')
+@login_required
 def searchbox():
     """
     用户自定义搜索，主要是根据专家（导师）和学校搜索
@@ -37,6 +34,7 @@ def searchbox():
 
 
 @blueprint.route('/insti_search')
+@login_required
 def insti_search():
     """
     对机构信息的查看
