@@ -26,19 +26,72 @@ class Sheet_Form(db.Model):
     def __repr__(self):
         return '<Sheet_Form {}'.format(self.company)
 
-class Institution_Form(db.Model):
-    __tablename__ = 'info_institution'
-    #__searchable__ = ['company', 'address']
+    def select_institution(self):
+        """
+        获取关于机构第page页数据
+        :param page: 页数
+        :return: 分页后的数据
+        """
+        try:
+            info = Sheet_Form.query
+            return info
+        except IOError:
+            return None
+        return None
+
+    def get_info(self, id):
+        """
+        根据id搜索数据库
+        :param id: id
+        :return: 专家基本信息
+        """
+        info = Sheet_Form.query.filter_by(id=id).first()
+        return info
+
+class Lab_Form(db.Model):
+    __tablename__ = 'info_lab'
     __analyzer__ = ChineseAnalyzer()
 
     id = db.Column(db.INTEGER, primary_key=True)
-    institution_name = db.Column(db.TEXT)
-    institution_introduction = db.Column(db.TEXT)
-    institution_history = db.Column(db.TEXT)
-    institution_research_area = db.Column(db.TEXT)
+    lab_name =  db.Column(db.TEXT)
+    lab_school = db.Column(db.TEXT)
+    lab_introduction = db.Column(db.TEXT)
+    lab_location = db.Column(db.TEXT)
+    lab_postcode = db.Column(db.TEXT)
+    lab_supportunit = db.Column(db.TEXT)
+    lab_tel = db.Column(db.TEXT)
+    lab_fax = db.Column(db.TEXT)
+    lab_mail = db.Column(db.TEXT)
+    lab_url = db.Column(db.TEXT)
+    lab_director = db.Column(db.TEXT)
+    lab_contactor = db.Column(db.TEXT)
 
     def __repr__(self):
-        return '<Institution_Form {}'.format(self.institution_introduction, self.institution_history, self.institution_research_area)
+        return '<Lab_Form {}'.format(self.lab_name, self.lab_school, self.lab_introduction,
+                                     self.lab_location, self.lab_postcode, self.lab_supportunit,
+                                     self.lab_director,self.lab_contactor)
+
+    def get_info(self, name):
+        """
+        根据id搜索数据库
+        :param id: id
+        :return: 专家基本信息
+        """
+        info = Lab_Form.query.filter_by(lab_name=name).first()
+        return info
+
+    def select_info(self):
+        """
+        获取第page页数据
+        :param page: 页数
+        :return: 分页后的数据
+        """
+        try:
+            info = Lab_Form.query
+            return info
+        except IOError:
+            return None
+        return None
 
 
 # flask_whooshalchemyplus.whoosh_index(app, Sheet_Form)
@@ -140,15 +193,6 @@ def select_address_checkbox(page):
     info = Sheet_Form.query.filter(Sheet_Form.address.like('%' + info_address[0] + '%')).paginate(page, per_page=6, error_out=False)
     return info, info_address[0]
 
-def select_institution():
-    """
-    对机构信息的展示
-    :return: 当前查看机构的简介，历史，主研方向
-    """
-
-    # current_institution = request.values.get('institution')
-    info_insti = Institution_Form.query.filter().first()   #paginate(per_page=6, error_out=False)
-    return info_insti
 
 class Basic_Info_Form(db.Model):
     """

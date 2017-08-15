@@ -29,104 +29,88 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-12 column">
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-1"><span
-                                class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
-                                class="icon-bar"></span><span class="icon-bar"></span></button>
-                        <a class="navbar-brand">专家</a>
-                    </div>
 
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="#">机构</a>
-                            </li>
-                            <li>
-                                <a href="#">专业</a>
-                            </li>
-                        </ul>
-                        <form class="navbar-form navbar-left" role="search" action="/searchbox">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="condition" placeholder="领域 生物医药">
-                            </div>
-                            <button type="submit" class="btn btn-default">检索</button>
-                        </form>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <h5>或者您也可以根据以下条件进行搜索 ：</h5>
-        </div>
-        <form id="AddressSelect" action="/search/1">
-            <table class="table ">
-                <div class="row">
-                    <tbody>
-                    <tr>
-                        <td style="border-top: 0px solid #ddd;">
-                            <label class=" contol-label">业务 ：</label>
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="buisiness" value="软件服务"> 软件服务
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="buisiness" value="软件推广"> 软件推广
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="buisiness" value="软件推广"> 软件推广
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="buisiness" value="软件研发"> 软件研发
-                        </td>
-                </div>
-                </tr>
-                <div class="row">
-                    <tr>
-                        <td style="border-top: 0px solid #ddd;">
-                            <label class="contol-label">位置 ：</label>
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="address" value="北京"> 北京市
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="address" value="上海"> 上海市
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="address" value="深圳"> 深圳市
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="address" value="杭州"> 杭州市
-                        </td>
-                </div>
-                </tr>
-                <div class="row">
-                    <tr>
-                        <td style="border-top: 0px solid #ddd;">
-                            <label class="contol-label">领域 ：</label>
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="domain" value="生物制药"> 生物制药
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="domain" value="软件开发"> 软件开发
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="domian" value="项目工程"> 项目工程
-                        </td>
-                        <td style="border-top: 0px solid #ddd;">
-                            <input type="radio" name="domain" value="科研探究"> 科研探究
-                        </td>
-                </div>
-                </tr>
-                </tbody>
-            </table>
-            <div class="row-space"></div>
+     <div class="container">
+         <div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                         <span class="sr-only">Toggle navigation</span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/index">专家</a>
+				</div>
+
+                <div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                         <span class="sr-only">Toggle navigation</span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/lab_index/1">实验室</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<form class="navbar-form navbar-left" role="search" action="/searchbox">
+						<div class="form-group">
+							<input type="text" class="form-control" name="condition" placeholder="请输入专业术语">
+						</div>
+                        <button type="submit" class="btn btn-default">检索</button>
+					</form>
+				</div>
+			</nav>
+		</div>
+	</div>
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+        <h5>或者您也可以根据以下条件进行搜索 ：</h5>
+    </div>
+         <form id="AddressSelect" action="/search/1">
+             <table class="table">
+{#             <div class="row">#}
+             <tbody>
+             <tr class="success">
+                 <td>
+            <label class="contol-label">位置 ：</label>
+                 </td>
+                 <td>
+            <input type="radio" name="address" value="北京市"> 北京市
+                 </td>
+                 <td>
+            <input type="radio" name="address" value="上海市"> 上海市
+                 </td>
+                 <td>
+            <input type="radio" name="address" value="深圳市"> 深圳市
+                 </td>
+                 <td>
+            <input type="radio" name="address" value="杭州市"> 杭州市
+                 </td>
+{#             </div>#}
+             </tr>
+{#            <div class="row">#}
+             <tr class="success">
+                 <td>
+            <label class="contol-label">领域 ：</label>
+                 </td>
+                 <td>
+            <input type="radio" name="domain" value="生物制药"> 生物制药
+                 </td>
+                 <td>
+            <input type="radio" name="domain" value="软件开发"> 软件开发
+                 </td>
+                 <td>
+            <input type="radio" name="domain" value="项目工程"> 项目工程
+                 </td>
+                 <td>
+            <input type="radio" name="domain" value="科研探究"> 科研探究
+                 </td>
+{#            </div>#}
+             </tr>
+            </tbody>
+             </table>
+         <div class="row-space"></div>
 
 
             <div class="row text-right">
@@ -142,9 +126,8 @@
             <!--<div class="col-sm-2">111111</div>-->
             <div class="col-sm-12 panel panel-default">
 
+                <div class="col-sm-2" style="text-align:center;width: 160px;height: 150px;margin-top: 10px"><img src="../../static/order/avator/{{ f.ID }}.jpg" width="100%" height="100%"></div>
 
-                <div class="col-sm-2" style="text-align:center;width: 160px;height: 150px;margin-top: 10px"><img
-                        src="../../static/order/avator/{{ f.ID }}.jpg" width="100%" height="100%"></div>
                 <div class="col-sm-10">
                     <h3><a href="{{ url_for('order.profile',id=f.ID) }}" target="_blank">{{ f.Name }}</a></h3>
 
@@ -160,8 +143,6 @@
                     <div class="user-info-subject">
                         <span>联系电话:{{ f.Tel }}</span>
                     </div>
-
-
                 </div>
 
             </div>
