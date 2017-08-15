@@ -178,7 +178,7 @@ def select_box():
     :return: 按照搜索内容的关键词进行搜索的相关专家或者学校（机构）陈列页面
     """
     info_text = request.values.get("condition")
-    print info_text
+    # print info_text
     info = Sheet_Form.query.filter(Sheet_Form.company.like('%' +info_text +'%')).paginate(per_page=6, error_out=False)
     return info
 

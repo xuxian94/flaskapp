@@ -10,7 +10,10 @@ from flaskapp.user.models import User
 from flaskapp.utils import flash_errors
 
 blueprint = Blueprint('public', __name__, static_folder='../static')
+login_manager.login_view = "public.login"
 
+
+# login_manager.login_message= "请先登录"
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -25,6 +28,7 @@ def home():
     # Handle logging in
     if request.method == 'POST':
         if form.validate_on_submit():
+
             login_user(form.user)
             flash('You are logged in.', 'success')
             redirect_url = request.args.get('next') or url_for('user.members')
@@ -63,7 +67,7 @@ def about():
     return render_template('public/about.html', form=form)
 
 
-@blueprint.route('/login',methods=['GET', 'POST'])
+@blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     """
     用户登录页面

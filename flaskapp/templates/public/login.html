@@ -1,34 +1,29 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <body>
-    <div class="container-register">
-        <h1>
-            登录
-        </h1>
-        <br/>
-        <form id="loginForm" method="POST" class="form form-register" action="/login" role="login">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-
-            {#                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>#}
-            {#                    <div class="form-group">#}
-            {#                        {{ form.username(placeholder="用户名", class_="form-control") }}#}
-            {#                        {{ form.password(placeholder="密码", class_="form-control") }}#}
-            {#                    </div>#}
-            <div class="form-group">
-                {#                        <input class="form-control">#}
-                {{ form.username(placeholder="用户名", class_="form-control") }}
-            </div>
-            <div class="form-group help">
-                {#                        <input class="form-control">#}
-                {{ form.password(placeholder="密码", class_="form-control") }}
-            </div>
-            <p><input class="btn btn-default btn-submit" type="submit" value="登录"></p>
+<div class="container-register">
+    <h1>
+        登录
+    </h1>
+    <br/>
+    <form id="loginForm" method="POST" class="form form-register" action="/login" role="login">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
 
-        </form>
-    </div>
-    </div>
-    </body>
+        <div class="form-group">
+
+            {{ form.username(placeholder="用户名", class_="form-control") }}
+        </div>
+        <div class="form-group help">
+
+            {{ form.password(placeholder="密码", class_="form-control") }}
+        </div>
+        <p><input class="btn btn-default btn-submit" type="submit" value="登录"></p>
+
+
+    </form>
+    <p><em>没有账号？</em> 点击 <a href="/register">这里</a> 注册</p>
+</div>
+
 {% endblock %}
 </html>
