@@ -2,49 +2,51 @@
 # -*- coding:utf8 -*-
 from flask import render_template, Blueprint
 from flask_login import login_required
-
 from models import *
 
+
+
 blueprint = Blueprint('order', __name__, static_folder='../static/order')
-Basic_Info_Form = Basic_Info_Form()
-Avator = Avator()
+# Basic_Info_Form = Basic_Info_Form()
+# Avator = Avator()
 
 
-@blueprint.route('/index')
+@blueprint.route('/index/<int:page>')
 @login_required
-def blank():
+def blank(page):
     """
         路由：index.html
         初始主页，即分页第一页
         分页显示了所有数据
     """
-    pagination = Basic_Info_Form.select_info().paginate(page=1, per_page=6, error_out=False)
+    # Professor.get_many(11, 1589, 'flaskapp/static/order/avator').all()
+    pagination = basic_info.query.paginate(page=page, per_page=6, error_out=False)
     return render_template('order/index.html', title='三螺旋', pagination=pagination)
 
 
-@blueprint.route('/searchbox')
-@login_required
-def searchbox():
-    """
-    用户自定义搜索，主要是根据专家（导师）和学校搜索
-    :return: 专家陈列页面，指定学校陈列页
-    """
-    info_text = select_box()
-    return render_template('order/search.html', title='三螺旋', pagination=info_text, con=info_text)
+# @blueprint.route('/searchbox')
+# @login_required
+# def searchbox():
+#     """
+#     用户自定义搜索，主要是根据专家（导师）和学校搜索
+#     :return: 专家陈列页面，指定学校陈列页
+#     """
+#     info_text = select_box()
+#     return render_template('order/search.html', title='三螺旋', pagination=info_text, con=info_text)
 
 
-@blueprint.route('/insti_search')
-@login_required
-def insti_search():
-    """
-    对机构信息的查看
-    :return: 
-    """
-    if not page:
-        page = 1
-    lab_info = Lab_Form()
-    pagination = lab_info.select_info().paginate(page=page, per_page=6, error_out=False)
-    return render_template('laboratory/lab_index.html', title='三螺旋', pagination=pagination)
+# @blueprint.route('/insti_search/<int:page>')
+# @login_required
+# def insti_search(page):
+#     """
+#     对机构信息的查看
+#     :return:
+#     """
+#     if not page:
+#         page = 1
+#     lab_info = Lab_Form()
+#     pagination = lab_info.select_info().paginate(page=page, per_page=6, error_out=False)
+#     return render_template('laboratory/lab_index.html', title='三螺旋', pagination=pagination)
 
 
 @blueprint.route('/search/<int:page>')
@@ -61,15 +63,7 @@ def search(page):
     return render_template('order/search.html', title='三螺旋', pagination=info_address_list, address=info_address)
 
 
-@blueprint.route('/<int:page>')
-@login_required
-def company(page):
-    """
-        路由：index.html
-        按page定位到第几页进行显示
-    """
-    pagination = Basic_Info_Form.select_info().paginate(page=page, per_page=6, error_out=False)
-    return render_template('order/index.html', title='三螺旋', pagination=pagination)
+
 
 
 @blueprint.route('/order_confirm')
@@ -120,7 +114,7 @@ def demand():
 @blueprint.route('/profile/<int:id>')
 @login_required
 def profile(id):
-    info = Basic_Info_Form.get_info(id=id)
+    info = Professor(id)
     return render_template('order/profile.html', title="三螺旋", info=info)
 
 @blueprint.route('/lab_infoshow/<string:name>')
