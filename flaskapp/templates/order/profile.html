@@ -54,7 +54,7 @@
     ============================ -->
     <div id="header" class="row">
         <div class="col-sm-2">
-            <img class="propic" src="../../static/order/avator/{{ info.ID }}.jpg" alt="" class="img-rounded">
+            <img class="propic" src="../../static/order/avator/{{ info.id }}.jpg" alt="" class="img-rounded">
         </div>
         <!-- photo end-->
 
@@ -62,13 +62,13 @@
             <div class="cv-title">
                 <div class="row">
                     <div class="col-sm-7">
-                        <h1>{{ info.Name }}</h1>
+                        <h1>{{ info.name }}</h1>
                     </div>
                     <div class="col-sm-5 text-right dl-share">
                         <a class="btn btn-success" href=""><span class="fa fa-star"></span> Follow</a>
                     </div>
                 </div>
-                <h2>{{ info.Company }} &nbsp; {{ info.Duty }}</h2>
+                <h2>{{ info.college }} &nbsp; {{ info.institute }}  {{ info.C }} {{ info.J }} {{ info.Q }}</h2>
             </div><!-- Title end-->
 
             <!-- ===========================
@@ -81,19 +81,19 @@
                 <!--</li>-->
                 <!--</ul>-->
                 <!--</div>&lt;!&ndash; social 1st col end&ndash;&gt;-->
-                {% if info.Email %}
+                {% if info.email %}
                 <div class="col-sm-4">
                     <ul class="list-unstyled">
                         <li><a href="mailto:support@evenfly.com"><span class="social fa fa-envelope-o"></span>{{
-                            info.Email }}</a>
+                            info.email }}</a>
                         </li>
                     </ul>
                 </div><!-- social 2nd col end-->
                 {% endif %}
-                {% if info.Tel %}
+                {% if info.tel %}
                 <div class="col-sm-4">
                     <ul class="list-unstyled">
-                        <li><a><span class="social fa fa-skype"></span>{{ info.Tel }}</a>
+                        <li><a><span class="social fa fa-skype"></span>{{ info.tel }}</a>
                         </li>
                     </ul>
                 </div><!-- social 3rd col end-->
@@ -107,33 +107,33 @@
     <!-- ===========================
     BODY LEFT PART
     ============================ -->
-    <div class="col-md-8 mainleft">
-        <div id="statement" class="row mobmid">
-            <div class="col-sm-1">
-                <span class="secicon fa fa-area-chart"></span>
-            </div><!--icon end-->
+    <div class="col-md-10 mainleft">
+        <!--<div id="statement" class="row mobmid">-->
+            <!--<div class="col-sm-1">-->
+                <!--<span class="secicon fa fa-area-chart"></span>-->
+            <!--</div>&lt;!&ndash;icon end&ndash;&gt;-->
 
-            <div class="col-sm-11">
-                <h3>研究领域</h3>
-                <p></p>
-                <p>此处放Echarts图</p>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-            </div><!--info end-->
-        </div><!--personal statement end-->
+            <!--<div class="col-sm-11">-->
+                <!--<h3>研究领域</h3>-->
+                <!--<p></p>-->
+                <!--<p>此处放Echarts图</p>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<br>-->
+            <!--</div>&lt;!&ndash;info end&ndash;&gt;-->
+        <!--</div>&lt;!&ndash;personal statement end&ndash;&gt;-->
 
-        <hr>
+        <!--<hr>-->
 
         <div id="education" class="row mobmid">
             <div class="col-sm-1">
@@ -145,11 +145,9 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <h4>1996年 获南京大学计算机科学与技术系学士</h4>
-                        <h4>1998年 获南京大学计算机科学与技术系硕士</h4>
-                        <h4>2000年 获南京大学计算机科学与技术系博士</h4>
-                        <h4>2003年 获国家杰出青年科学基金</h4>
-                        <h4>2006年 入选教育部长江学者特聘教授</h4>
+                        {% for tmp in info.career %}
+                        <h4>{{ tmp }}</h4>
+                        {% endfor %}
                     </div>
 
                 </div><!--Education & Certification 1 end-->
@@ -172,11 +170,30 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p>2012年，当选IEEE Fellow（国际电气电子工程学会会士）和IAPR Fellow （国际模式识别学会会士）</p>
-                        <p>2013年，当选中国计算机学会（CCF）会士</p>
-                        <p>2013年，成为大陆高校首位当选ACM杰出科学家的学者</p>
-                        <p>2016年，当选AAAI Fellow（国际人工智能学会），成为我国大陆第一位，也是此次入选的唯一来自美欧之外的学者，并且是唯一在中国大陆取得博士学位的AAAI Fellow</p>
-                        <p>2017年，当选人工智能领域顶级学术会议 AAAI 2019 程序委员会主席，是该会议自1980年成立以来首位华人主席、也是首次由美欧之外国家的学者出任主席</p>
+                        {% for tmp in info.job%}
+                        <p>{{ tmp }}</p>
+                        {%  endfor %}
+                        <</div>
+
+
+                </div><!--Job 1 end-->
+
+            </div><!--Job experiences end-->
+        </div><!--Job experiences end-->
+
+         <div id="contribute " class="row mobmid">
+            <div class="col-sm-1">
+                <span class="secicon fa fa-trophy"></span>
+            </div><!--icon end-->
+
+            <div class="col-sm-11">
+                <h3>获奖状况</h3>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for tmp in info.contribute %}
+                        <p>{{ tmp }}</p>
+                        {% endfor %}
                     </div>
 
 
@@ -189,80 +206,80 @@
     <!-- ===========================
     SIDEBAR
     =========================== -->
-    <div class="col-md-4 mainright">
-        <div class="row">
-            <div class="col-sm-1 col-md-2 mobmid">
-                <span class="secicon fa fa-magic"></span>
-            </div><!--icon end-->
+    <!--<div class="col-md-4 mainright">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm-1 col-md-2 mobmid">-->
+                <!--<span class="secicon fa fa-magic"></span>-->
+            <!--</div>&lt;!&ndash;icon end&ndash;&gt;-->
 
-            <div class="col-sm-11 col-md-10">
-                <h3 class="mobmid">Technical skills </h3>
+            <!--<div class="col-sm-11 col-md-10">-->
+                <!--<h3 class="mobmid">Technical skills </h3>-->
 
-                <p>Activity</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="65"
-                         aria-valuemin="0" aria-valuemax="100" style="width: 65%">
-                        <span class="sr-only">65% Complete (success)</span>
-                    </div>
-                </div><!--skill end-->
-
-
-                <p>Papers</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="85" aria-valuemin="0"
-                         aria-valuemax="100" style="width: 85%">
-                        <span class="sr-only">85% Complete</span>
-                    </div>
-                </div><!--skill end-->
-
-                <p>H-index</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
-                         aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                        <span class="sr-only">60% Complete (warning)</span>
-                    </div>
-                </div><!--skill end-->
-
-                <p>G-index</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30"
-                         aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                        <span class="sr-only">30% Complete (danger)</span>
-                    </div>
-                </div><!--skill end-->
-            </div><!--info end-->
-        </div><!--tech skills end-->
-
-        <hr>
-        <!-- 获奖情况-->
-        <div class="row mobmid">
-            <div class="col-sm-1 col-md-2">
-                <span class="secicon fa fa-trophy"></span>
-            </div><!--icon end-->
-
-            <div class="col-sm-11 col-md-10 ">
-                <h3>团队</h3>
-
-                <div class="award">
-                    <p>ACM Fellow（2016）</p>
-                    <p>AAAS Fellow（2016）</p>
-                    <p>AAAI Fellow（2016）</p>
-                    <p>IEEE数据挖掘杰出服务奖 (2016)</p>
-                    <p>PAKDD 卓越贡献奖（2016）</p>
-                    <p>2013年度国家自然科学二等奖 (2014)</p>
-                    <p>ACM杰出科学家 (2013)</p>
-                    <p>IEEE计算智能学会杰出青年成就奖 (2013)</p>
-                    <p>中国计算机学会会士 (2013)</p>
-                </div>
-                <!--1st award end-->
+                <!--<p>Activity</p>-->
+                <!--<div class="progress">-->
+                    <!--<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="65"-->
+                         <!--aria-valuemin="0" aria-valuemax="100" style="width: 65%">-->
+                        <!--<span class="sr-only">65% Complete (success)</span>-->
+                    <!--</div>-->
+                <!--</div>&lt;!&ndash;skill end&ndash;&gt;-->
 
 
-            </div><!--awards end-->
+                <!--<p>Papers</p>-->
+                <!--<div class="progress">-->
+                    <!--<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="85" aria-valuemin="0"-->
+                         <!--aria-valuemax="100" style="width: 85%">-->
+                        <!--<span class="sr-only">85% Complete</span>-->
+                    <!--</div>-->
+                <!--</div>&lt;!&ndash;skill end&ndash;&gt;-->
 
-        </div>
+                <!--<p>H-index</p>-->
+                <!--<div class="progress">-->
+                    <!--<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"-->
+                         <!--aria-valuemin="0" aria-valuemax="100" style="width: 60%">-->
+                        <!--<span class="sr-only">60% Complete (warning)</span>-->
+                    <!--</div>-->
+                <!--</div>&lt;!&ndash;skill end&ndash;&gt;-->
 
-        <hr>
-    </div><!--right end-->
+                <!--<p>G-index</p>-->
+                <!--<div class="progress">-->
+                    <!--<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30"-->
+                         <!--aria-valuemin="0" aria-valuemax="100" style="width: 30%">-->
+                        <!--<span class="sr-only">30% Complete (danger)</span>-->
+                    <!--</div>-->
+                <!--</div>&lt;!&ndash;skill end&ndash;&gt;-->
+            <!--</div>&lt;!&ndash;info end&ndash;&gt;-->
+        <!--</div>&lt;!&ndash;tech skills end&ndash;&gt;-->
+
+        <!--<hr>-->
+        <!--&lt;!&ndash; 获奖情况&ndash;&gt;-->
+        <!--<div class="row mobmid">-->
+            <!--<div class="col-sm-1 col-md-2">-->
+                <!--<span class="secicon fa fa-trophy"></span>-->
+            <!--</div>&lt;!&ndash;icon end&ndash;&gt;-->
+
+            <!--<div class="col-sm-11 col-md-10 ">-->
+                <!--<h3>团队</h3>-->
+
+                <!--<div class="award">-->
+                    <!--<p>ACM Fellow（2016）</p>-->
+                    <!--<p>AAAS Fellow（2016）</p>-->
+                    <!--<p>AAAI Fellow（2016）</p>-->
+                    <!--<p>IEEE数据挖掘杰出服务奖 (2016)</p>-->
+                    <!--<p>PAKDD 卓越贡献奖（2016）</p>-->
+                    <!--<p>2013年度国家自然科学二等奖 (2014)</p>-->
+                    <!--<p>ACM杰出科学家 (2013)</p>-->
+                    <!--<p>IEEE计算智能学会杰出青年成就奖 (2013)</p>-->
+                    <!--<p>中国计算机学会会士 (2013)</p>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;1st award end&ndash;&gt;-->
+
+
+            <!--</div>&lt;!&ndash;awards end&ndash;&gt;-->
+
+        <!--</div>-->
+
+        <!--<hr>-->
+    <!--</div>&lt;!&ndash;right end&ndash;&gt;-->
 </div><!--container end-->
 
 
