@@ -44,4 +44,4 @@ docs/_build
 
 # Virtualenvs
 env/
-.settings
+.settings.py
