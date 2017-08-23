@@ -84,7 +84,6 @@ class Basic_info(db.Model):
         info = Basic_info.query.filter(Basic_info.id >= a, Basic_info.id <= b)
         return info
 
-
 class Avator(db.Model):
     __tablename__ = 'avator'
 
@@ -161,6 +160,73 @@ class Details(db.Model):
         except Exception as e:
             print e
 
+class pro_art(db.Model):
+    __tablename__ = 'pro_art'
+
+    id = db.Column(db.INTEGER, primary_key=True)
+    name = db.Column(db.TEXT)
+    article_list = db.Column(db.TEXT)
+
+    @staticmethod
+    def get_article_list(id):
+        '''
+        返回专家对应的所有论文的列表
+        :param id:
+        :return:
+        '''
+        info = pro_art.query.filter_by(id=id).first()
+        art_contents = []
+
+        list_str = info.article_list.strip()
+        if list_str:
+            lists = list_str.split(',')
+            for list in lists:
+                if list:
+                    art_contents.append(articles.give_article(list))
+
+        # for content in art_contents:
+        #     print content
+
+        return art_contents
+
+class articles(db.Model):
+    __tablename__ = 'articles'
+
+    id = db.Column(db.INTEGER, primary_key=True)
+
+    title = db.Column(db.TEXT)
+    key_word = db.Column(db.TEXT)
+    abstract = db.Column(db.TEXT)
+    author = db.Column(db.TEXT)
+    journal = db.Column(db.TEXT)
+
+    @staticmethod
+    def get_article(id):
+
+        info = articles.query.filter_by(id=id).first()
+
+        title = info.title
+        key_word = info.key_word
+        abstract = info.abstract
+        author = info.author
+        journal = info.journal
+
+        return title, key_word,abstract,author,journal
+
+
+    @staticmethod
+    def give_article(id):
+        '''
+        给出一个论文的字符串数据
+        :param id:
+        :return:
+        '''
+        title, key_word, abstract, author, journal = articles.get_article(id)
+
+        return title+'. '+author+'. '+journal
+
+
+
 class Professor():
     '''
     返回专家的信息
@@ -173,6 +239,8 @@ class Professor():
         self.career, self.contribute, self.job = Details.get_details(id)
         self.name, self.college, self.avator, self.institute, self.tel, self.email, self.C, self.J, self.Q = Basic_info.get_basic_info(
             id, path)
+        self.art_contents = pro_art.get_article_list(id)
+
 
 
 class Lab_Form(db.Model):
