@@ -1,4 +1,5 @@
 *.py[cod]
+*.pyc
 
 # C extensions
 *.so
@@ -45,3 +46,5 @@ docs/_build
 # Virtualenvs
 env/
 .settings.py
+
+/interfaces
