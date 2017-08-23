@@ -1,10 +1,84 @@
 {% extends "order/base.html" %}
-{% block content %}
+{% block title %}三螺旋大数据{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block navbar %}
     {{ super() }}
+{% endblock %}
+{% block content %}
+{#    {{ super() }}#}
+    <div class="container">
+         <div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                         <span class="sr-only">Toggle navigation</span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/searchbox1/1">专家</a>
+				</div>
+
+                <div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                         <span class="sr-only">Toggle navigation</span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/searchbox2/1">实验室</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<form class="navbar-form navbar-left" role="search" action="/searchbox1/1">
+						<div class="form-group">
+							<input type="text" class="form-control" name="condition1" placeholder="请输入专家名称">
+						</div>
+                        <button type="submit" class="btn btn-default">检索</button>
+					</form>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+    <div class="row">
+
+            {% for f in pagination.items %}
+            {% if f.id %}
+            <!--<div class="col-sm-2">111111</div>-->
+            <div class="col-sm-12 panel panel-default">
+
+                <div class="col-sm-2" style="text-align:center;width: 160px;height: 150px;margin-top: 10px"><img src="../../static/order/avator/{{ f.avator}}" width="100%" height="100%"></div>
+
+                <div class="col-sm-10">
+                    <h3><a href="{{ url_for('order.profile',id=f.id) }}" target="_blank">{{ f.name }}</a></h3>
+
+                    <div class="user-info-article">
+                        <span>学校:    {{ f.college }}</span>
+                    </div>
+                    <div class="user-info-subject">
+                        <span>学院:    {{ f.institute }}</span>
+                    </div>
+                    <div class="user-info-subject">
+                        <span>邮箱:    {{ f.email }}</span>
+                    </div>
+                    <div class="user-info-subject">
+                        <span>联系电话:{{ f.tel }}</span>
+                    </div>
+                </div>
+
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+    <div class="row-space"></div>
+
         <nav class="pagination-bottom" style="text-align: center">
           <ul class="pagination">
                 <li{% if not pagination.has_prev %} class="disabled"{% endif %}>
-                    <a href="{% if pagination.has_prev %}{{ url_for('order.blank', page=pagination.prev_num) }}{% else %}#{% endif %}">
+                    <a href="{% if pagination.has_prev %}{{ url_for('order.searchbox1', condition1=expert_name, page=pagination.prev_num) }}{% else %}#{% endif %}">
                         «
                     </a>
                 </li>
@@ -12,11 +86,11 @@
                     {% if p %}
                         {% if p == pagination.page %}
                         <li class="active">
-                            <a href="{{ url_for('order.blank', page = p) }}">{{ p }}</a>
+                            <a href="{{ url_for('order.searchbox1', condition1=expert_name, page = p) }}">{{ p }}</a>
                         </li>
                         {% else %}
                         <li>
-                            <a href="{{ url_for('order.blank', page = p) }}">{{ p }}</a>
+                            <a href="{{ url_for('order.searchbox1', condition1=expert_name, page = p) }}">{{ p }}</a>
                         </li>
                         {% endif %}
                     {% else %}
@@ -24,11 +98,16 @@
                     {% endif %}
                 {% endfor %}
                 <li{% if not pagination.has_next %} class="disabled"{% endif %}>
-                    <a href="{% if pagination.has_next %}{{ url_for('order.blank',page=pagination.next_num) }}{% else %}#{% endif %}">
+                    <a href="{% if pagination.has_next %}{{ url_for('order.searchbox1', condition1=expert_name, page=pagination.next_num) }}{% else %}#{% endif %}">
                     »
                     </a>
                 </li>
             </ul>
         </nav>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript" src="../static/order/js/script.js"></script>
 {% endblock %}
 
