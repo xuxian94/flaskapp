@@ -45,6 +45,5 @@ docs/_build
 
 # Virtualenvs
 env/
-.settings.py
-
+settings.py
 /interfaces
