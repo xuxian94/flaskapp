@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
-                <a class="navbar-link" href="/lab_index/1"><i class="fa fa-sign-out">返回</i></a>
+                <a class="navbar-link" href="/searchbox2/1"><i class="fa fa-sign-out">返回</i></a>
                 <h1>
                     {{ info.lab_name  }}
                 </h1>
@@ -47,7 +47,7 @@
                             <br>
                             <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室邮箱:</label>   {{ info.lab_mail }}</p>
                             <br>
-                            <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室网址: </label>   {{ info.lab_url }}</p>
+                             <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室网址: </label>  <a href={{ info.lab_url }}>{{ info.lab_url }}</a> </p>
                             <br>
                             <p style="font-family: 'Times New Roman'; color: dimgrey; font-size: 20px"><label>实验室主任:</label>   {{ info.lab_director }}</p>
                             <br>

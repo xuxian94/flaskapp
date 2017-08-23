@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" href="../static/order/favicon.ico" type="image/x-icon">
+
     <!-- ===========================
     THEME INFO
     =========================== -->
@@ -48,13 +50,14 @@
 </head>
 
 <body>
+<a class="navbar-link" href="/searchbox1/1"><i class="fa fa-sign-out">返回</i></a>
 <div class="container">
     <!-- ===========================
     HEADER
     ============================ -->
     <div id="header" class="row">
         <div class="col-sm-2">
-            <img class="propic" src="../../static/order/avator/{{ info.id }}.jpg" alt="" class="img-rounded">
+            <img class="propic" src="../../static/order/avator/{{ info.avator }}" alt="" class="img-rounded">
         </div>
         <!-- photo end-->
 
@@ -68,7 +71,7 @@
                         <a class="btn btn-success" href=""><span class="fa fa-star"></span> Follow</a>
                     </div>
                 </div>
-                <h2>{{ info.college }} &nbsp; {{ info.institute }}  {{ info.C }} {{ info.J }} {{ info.Q }}</h2>
+                <h2>{{ info.college }} &nbsp; {{ info.institute }}  <b style="color: #2a6496">{{ info.C }}  {{ info.J }} {{ info.Q }}</b></h2>
             </div><!-- Title end-->
 
             <!-- ===========================
@@ -146,7 +149,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         {% for tmp in info.career %}
-                        <h4>{{ tmp }}</h4>
+                        <p style="font-size: 13px"><font color="black">{{ tmp }}</font></p>
                         {% endfor %}
                     </div>
 
@@ -171,7 +174,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         {% for tmp in info.job%}
-                        <p>{{ tmp }}</p>
+                        <p style="font-size: 13px"><font color="black">{{ tmp }}</font></p>
                         {%  endfor %}
                         <</div>
 
@@ -181,24 +184,46 @@
             </div><!--Job experiences end-->
         </div><!--Job experiences end-->
 
+    <hr>
+
          <div id="contribute " class="row mobmid">
             <div class="col-sm-1">
                 <span class="secicon fa fa-trophy"></span>
             </div><!--icon end-->
-
             <div class="col-sm-11">
                 <h3>获奖状况</h3>
 
                 <div class="row">
                     <div class="col-md-12">
                         {% for tmp in info.contribute %}
-                        <p>{{ tmp }}</p>
+                            <p style="font-size: 13px"><font color="black">{{ tmp }}</font></p>
                         {% endfor %}
                     </div>
 
 
                 </div><!--Job 1 end-->
+            </div><!--Job experiences end-->
+        </div><!--Job experiences end-->
 
+    <hr>
+
+    <div id="contribute " class="row mobmid">
+            <div class="col-sm-1">
+                <span class="secicon fa fa-file-text"></span>
+            </div><!--icon end-->
+
+            <div class="col-sm-11">
+                <h3>论文情况</h3>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for tmp in info.contribute %}
+                            <p style="font-size: 13px"><font color="black">{{ tmp }}</font></p>
+                        {% endfor %}
+                    </div>
+
+
+                </div><!--Job 1 end-->
             </div><!--Job experiences end-->
         </div><!--Job experiences end-->
     </div><!--left end-->
@@ -280,6 +305,7 @@
 
         <!--<hr>-->
     <!--</div>&lt;!&ndash;right end&ndash;&gt;-->
+
 </div><!--container end-->
 
 
