@@ -8,7 +8,6 @@ from sqlalchemy import or_
 from jieba.analyse.analyzer import ChineseAnalyzer
 
 
-
 class Basic_info(db.Model):
     __tablename__ = 'basic_info'
 
@@ -74,15 +73,16 @@ class Basic_info(db.Model):
     @staticmethod
     # 返回id编号从a到b专家的查询结果，可以直接调用pignate
     def get_many(a, b):
-        '''
+        """
         获得编号从a到b的专家的基本信息
         :param a:
         :param b:
         :return:
-       '''
+        """
         # 查询专家基本信息的表
         info = Basic_info.query.filter(Basic_info.id >= a, Basic_info.id <= b)
         return info
+
 
 class Avator(db.Model):
     __tablename__ = 'avator'
@@ -96,13 +96,13 @@ class Avator(db.Model):
     @staticmethod
     # 根据id获取头像信息
     def get_avator(id, path):
-        '''
+        """
         根据id来获取对应专家的头像
         当数据据和缓存都没有时候，默认给一个空白头像
         :param id:  专家的id
         :param path: 存放头像缓存的路径,默认路径为'path/interface/avator'
         :return: 返回头像的对应的路径
-        '''
+        """
 
         # 为头像缓存添加路径
         if not os.path.exists(path):
@@ -139,6 +139,7 @@ class Avator(db.Model):
         for data in info:
             Avator.get_avator(data.id, 'flaskapp/static/order/avator/')
 
+
 class Details(db.Model):
     __tablename__ = 'details'
 
@@ -160,6 +161,7 @@ class Details(db.Model):
         except Exception as e:
             print e
 
+
 class pro_art(db.Model):
     __tablename__ = 'pro_art'
 
@@ -169,11 +171,11 @@ class pro_art(db.Model):
 
     @staticmethod
     def get_article_list(id):
-        '''
+        """
         返回专家对应的所有论文的列表
         :param id:
         :return:
-        '''
+        """
         info = pro_art.query.filter_by(id=id).first()
         art_contents = []
 
@@ -189,6 +191,7 @@ class pro_art(db.Model):
 
         return art_contents
 
+
 class articles(db.Model):
     __tablename__ = 'articles'
 
@@ -202,7 +205,6 @@ class articles(db.Model):
 
     @staticmethod
     def get_article(id):
-
         info = articles.query.filter_by(id=id).first()
 
         title = info.title
@@ -211,28 +213,26 @@ class articles(db.Model):
         author = info.author
         journal = info.journal
 
-        return title, key_word,abstract,author,journal
-
+        return title, key_word, abstract, author, journal
 
     @staticmethod
     def give_article(id):
-        '''
+        """
         给出一个论文的字符串数据
         :param id:
         :return:
-        '''
+        """
         title, key_word, abstract, author, journal = articles.get_article(id)
 
-        return title+'. '+author+'. '+journal
-
+        return title + '. ' + author + '. ' + journal
 
 
 class Professor():
-    '''
+    """
     返回专家的信息
     get_many(a , b, path): 返回 id（a~b）之间的专家基本数据(query对象，可以接pagenate)
     init(id, path): 返回对应id专家的所有信息
-    '''
+    """
 
     def __init__(self, id, path):
         self.id = id
@@ -242,13 +242,12 @@ class Professor():
         self.art_contents = pro_art.get_article_list(id)
 
 
-
 class Lab_Form(db.Model):
     __tablename__ = 'info_lab'
     __analyzer__ = ChineseAnalyzer()
 
     id = db.Column(db.INTEGER, primary_key=True)
-    lab_name =  db.Column(db.TEXT)
+    lab_name = db.Column(db.TEXT)
     lab_school = db.Column(db.TEXT)
     lab_introduction = db.Column(db.TEXT)
     lab_location = db.Column(db.TEXT)
@@ -264,7 +263,7 @@ class Lab_Form(db.Model):
     def __repr__(self):
         return '<Lab_Form {}'.format(self.lab_name, self.lab_school, self.lab_introduction,
                                      self.lab_location, self.lab_postcode, self.lab_supportunit,
-                                     self.lab_director,self.lab_contactor)
+                                     self.lab_director, self.lab_contactor)
 
     def get_info(self, name):
         """
@@ -295,6 +294,3 @@ class Lab_Form(db.Model):
         """
         info = Lab_Form.query.filter(or_(Lab_Form.lab_name.like('%' + name + '%')))
         return info
-
-
-
