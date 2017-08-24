@@ -15,6 +15,10 @@ def searchbox1(page):
     :return: 专家搜索结果的陈列页面
     """
     basic_info = Basic_info()
+
+    # 初次运行网站时执行，获得专家图片缓存（路径：'flaskapp/static/order/avator/'）
+    # Avator.init_avator()
+
     expert_name = request.values.get('condition1')
     if not expert_name:
         expert_name = ""
